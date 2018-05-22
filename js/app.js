@@ -1,7 +1,23 @@
 /*
  * Create a list that holds all of your cards
  */
-
+ const cards = ["fab fa-pied-piper-hat",
+               "fab fa-adversal",
+               "fas fa-allergies",
+               "fas fa-balance-scale",
+               "fas fa-baseball-ball",
+               "fas fa-bicycle",
+               "fas fa-boxes",
+               "fas fa-camera-retro",
+               "fab fa-pied-piper-hat",
+               "fab fa-adversal",
+               "fas fa-allergies",
+               "fas fa-balance-scale",
+               "fas fa-baseball-ball",
+               "fas fa-bicycle",
+               "fas fa-boxes",
+               "fas fa-camera-retro"
+             ];
 
 /*
  * Display the cards on the page
@@ -25,31 +41,11 @@ function shuffle(array) {
     return array;
 }
 
-const cards = ["fab fa-pied-piper-hat",
-              "fab fa-adversal",
-              "fas fa-allergies",
-              "fas fa-balance-scale",
-              "fas fa-baseball-ball",
-              "fas fa-bicycle",
-              "fas fa-boxes",
-              "fas fa-camera-retro",
-              "fab fa-pied-piper-hat",
-              "fab fa-adversal",
-              "fas fa-allergies",
-              "fas fa-balance-scale",
-              "fas fa-baseball-ball",
-              "fas fa-bicycle",
-              "fas fa-boxes",
-              "fas fa-camera-retro"
-            ];
-
-console.log(cards);
 
 let gameArea = document.getElementById("gameArea");
 let ul = document.createElement("UL");
 ul.className = "deck";
 gameArea.appendChild(ul);
-
 
 function buildGame() {
 
@@ -71,9 +67,11 @@ function buildGame() {
     //Add the cards array class name to generate the icon
     newIcon.className = card;
 
-    //append the new icone node to the li node
+    //append the new icon node to the li node
     newli.appendChild(newIcon);
     $(newli).click(function(evt){
+          let checkMe = newli.childNodes;
+          console.log(checkMe);
           $(newli).toggleClass("open show");
     });
 
@@ -83,7 +81,6 @@ function buildGame() {
   };
 
 }
-
 
 
 buildGame();
