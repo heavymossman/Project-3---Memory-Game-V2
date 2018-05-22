@@ -32,13 +32,61 @@ const cards = ["fab fa-pied-piper-hat",
               "fas fa-baseball-ball",
               "fas fa-bicycle",
               "fas fa-boxes",
+              "fas fa-camera-retro",
+              "fab fa-pied-piper-hat",
+              "fab fa-adversal",
+              "fas fa-allergies",
+              "fas fa-balance-scale",
+              "fas fa-baseball-ball",
+              "fas fa-bicycle",
+              "fas fa-boxes",
               "fas fa-camera-retro"
             ];
 
+console.log(cards);
 
-const icon = '<i></i>';
+let gameArea = document.getElementById("gameArea");
+let ul = document.createElement("UL");
+ul.className = "deck";
+gameArea.appendChild(ul);
 
-console.log(cards)
+
+function buildGame() {
+
+  //shuffles the array of cards each time the function is run to build a new game
+  let shuffledCards = shuffle(cards);
+
+  //Loop creates the li for each element in the array of cards
+  for(let i = 0; i < cards.length; i++) {
+
+    //create new li node
+    let newli = document.createElement("LI");
+    //apply the card class
+    newli.className = "card";
+
+    // store the indexed value in the already shuffled array cards
+    let card = shuffledCards[i];
+    //Create a new icon node
+    let newIcon = document.createElement("I");
+    //Add the cards array class name to generate the icon
+    newIcon.className = card;
+
+    //append the new icone node to the li node
+    newli.appendChild(newIcon);
+    $(newli).click(function(evt){
+          $(newli).toggleClass("open show");
+    });
+
+    //append the new li completed to the master ul
+    ul.appendChild(newli);
+
+  };
+
+}
+
+
+
+buildGame();
 
 /*
  * set up the event listener for a card. If a card is clicked:
