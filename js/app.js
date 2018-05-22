@@ -25,6 +25,20 @@ function shuffle(array) {
     return array;
 }
 
+const cards = ["fab fa-pied-piper-hat",
+              "fab fa-adversal",
+              "fas fa-allergies",
+              "fas fa-balance-scale",
+              "fas fa-baseball-ball",
+              "fas fa-bicycle",
+              "fas fa-boxes",
+              "fas fa-camera-retro"
+            ];
+
+
+const icon = '<i></i>';
+
+console.log(cards)
 
 /*
  * set up the event listener for a card. If a card is clicked:
