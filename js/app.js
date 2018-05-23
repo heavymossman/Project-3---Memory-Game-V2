@@ -3,14 +3,14 @@
  */
  const cards = ["fab fa-pied-piper-hat",
                "fab fa-adversal",
+               "fab fa-pied-piper-hat",
+               "fab fa-adversal",
                "fas fa-allergies",
                "fas fa-balance-scale",
                "fas fa-baseball-ball",
                "fas fa-bicycle",
                "fas fa-boxes",
                "fas fa-camera-retro",
-               "fab fa-pied-piper-hat",
-               "fab fa-adversal",
                "fas fa-allergies",
                "fas fa-balance-scale",
                "fas fa-baseball-ball",
@@ -51,6 +51,8 @@ function buildGame() {
 
   //shuffles the array of cards each time the function is run to build a new game
   let shuffledCards = shuffle(cards);
+  //This is where we sill store our open cards
+  let openCards = [];
 
   //Loop creates the li for each element in the array of cards
   for(let i = 0; i < cards.length; i++) {
@@ -71,7 +73,15 @@ function buildGame() {
     newli.appendChild(newIcon);
     $(newli).click(function(evt){
           let checkMe = newli.childNodes;
-          console.log(checkMe);
+          //console.log(checkMe);
+          openCards.push(checkMe);
+          if (openCards.length > 1) {
+            console.log([openCards])
+          } else {
+            //console.log("Less than 1")
+            //let openCards = [];
+            //console.log(openCards)
+          }
           $(newli).toggleClass("open show");
     });
 
