@@ -4,8 +4,8 @@
  const cards = ["fab fa-pied-piper-hat",
                "fab fa-adversal",
                "fab fa-pied-piper-hat",
-               "fab fa-adversal",
-               "fas fa-allergies",
+               "fab fa-adversal"/*,
+              "fas fa-allergies",
                "fas fa-balance-scale",
                "fas fa-baseball-ball",
                "fas fa-bicycle",
@@ -16,7 +16,7 @@
                "fas fa-baseball-ball",
                "fas fa-bicycle",
                "fas fa-boxes",
-               "fas fa-camera-retro"
+               "fas fa-camera-retro" */
              ];
 
 /*
@@ -25,6 +25,9 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+let openCards = [];
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -42,17 +45,50 @@ function shuffle(array) {
 }
 
 
+
 let gameArea = document.getElementById("gameArea");
 let ul = document.createElement("UL");
 ul.className = "deck";
 gameArea.appendChild(ul);
+
+function respondToClick(evt){
+  $(evt.target).toggleClass("open show");
+  let inside = $(evt.target.childNodes)
+  //console.log(inside)
+  openCards.push(inside);
+  //evt.target.style.backgroundColor = "red";
+  openCardList();
+}
+
+function openCardList() {
+
+
+
+  if (openCards.length >= 2){
+
+    for (let i = 0; i < openCards.length; i++){
+      console.log(openCards[i])
+    }
+
+
+    //console.log(openCards[1]);
+    //console.log(cardOne);
+
+    /*if (openCards[0] == openCards[1]) {
+      console.log("WIN");
+    } else if (openCards[0] !== openCards[1]) {
+      console.log("NO MATCH")
+    } */
+
+  }
+
+}
 
 function buildGame() {
 
   //shuffles the array of cards each time the function is run to build a new game
   let shuffledCards = shuffle(cards);
   //This is where we sill store our open cards
-  let openCards = [];
 
   //Loop creates the li for each element in the array of cards
   for(let i = 0; i < cards.length; i++) {
@@ -71,24 +107,24 @@ function buildGame() {
 
     //append the new icon node to the li node
     newli.appendChild(newIcon);
-    $(newli).click(function(evt){
+    /*$(newli).click(function(evt){
           let checkMe = newli.childNodes;
-          //console.log(checkMe);
+          //console.log(checkMe)
           openCards.push(checkMe);
-          if (openCards.length > 1) {
-            console.log([openCards])
-          } else {
-            //console.log("Less than 1")
-            //let openCards = [];
-            //console.log(openCards)
-          }
+          cardChecker();
           $(newli).toggleClass("open show");
-    });
+    }); */
+
+    newli.addEventListener('click', respondToClick);
 
     //append the new li completed to the master ul
     ul.appendChild(newli);
 
   };
+
+  //gameArea.addEventListener('click', respondToClick);
+
+
 
 }
 
