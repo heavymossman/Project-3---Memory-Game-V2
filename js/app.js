@@ -57,10 +57,20 @@ function respondToClick(evt){
   //console.log(inside)
   openCards.push(inside);
   //evt.target.style.backgroundColor = "red";
-  openCardList();
+  openCardList(evt);
 }
 
-function openCardList() {
+function closeAllCards(){
+  //store all the elements with the class card in the var cards
+  let cards = document.querySelectorAll(".card");
+  //Remove the open show classes after a 1.1 second delay.
+  setTimeout(function(){ $(cards).removeClass("open show"); }, 1100);
+  //reset the openCards array to empty.
+  openCards = [];
+}
+
+
+function openCardList(evt) {
 
 
   if (openCards.length >= 2){
@@ -80,6 +90,9 @@ function openCardList() {
       console.log("WIN");
     } else {
       console.log("NO MATCH")
+      closeAllCards();
+
+      
     }
 
   //  console.log(openCards.toString())
@@ -88,6 +101,8 @@ function openCardList() {
   }
 
 }
+
+
 
 function buildGame() {
 
