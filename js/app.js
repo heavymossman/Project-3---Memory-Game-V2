@@ -87,7 +87,6 @@ function closeAllCards(){
 function matchingCards(){
   //store the matching cards as they are the only ones open in a variable. 
   let cards = document.querySelectorAll(".open")
-  console.log(cards)
   //Add the match variable. 
   $(cards).addClass("match");
   //send the winning cards to the winning pairs array to be stored (prob use this as the score)
@@ -102,7 +101,6 @@ function matchingCards(){
 function cardsfoundScore(){
 
   let cardsMatched = winningPairs.length;
-  console.log("You have matched " + cardsMatched + " pairs of cards");
 }
 
 function movesCount(){
@@ -138,14 +136,9 @@ function openCardList(evt) {
     let firstCard = $(openCards[0]).attr('class');
     let secondCard = $(openCards[1]).attr('class');
 
-
-    console.log(firstCard);
-    console.log(secondCard);
-
     if (firstCard === secondCard) {
       matchingCards();
     } else {
-      console.log("NO MATCH")
       closeAllCards();
       
     }
