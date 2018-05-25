@@ -69,6 +69,12 @@ function closeAllCards(){
   openCards = [];
 }
 
+function matchingCards(){
+  let cards = document.querySelectorAll(".open")
+  $(cards).addClass("match");
+  console.log("WIN");
+}
+
 
 function openCardList(evt) {
 
@@ -87,11 +93,10 @@ function openCardList(evt) {
     console.log(secondCard);
 
     if (firstCard === secondCard) {
-      console.log("WIN");
+      matchingCards();
     } else {
       console.log("NO MATCH")
       closeAllCards();
-
       
     }
 
