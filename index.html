@@ -14,7 +14,22 @@
         <header>
             <h1>Matching Game</h1>
         </header>
+        <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content text-center">
+    <span class="close">&times;</span>
+    <h1>CONGRATULATIONS!</h1>
+    <h3>You are a winner!</h3>
+    <h3>Your Score <span class="moves"></span></h3>
+    <button onclick="location.reload();">Play Again</button>
+  </div>
+
+</div>
         <section class="score-panel">
         	<ul class="stars">
         		<li><i class="fa fa-star"></i></li>
