@@ -28,7 +28,8 @@
 
 let openCards = [];
 let winningPairs = [];
-
+let moves = 0;
+let scoreHTML = $('.moves');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -57,6 +58,7 @@ function respondToClick(evt){
   let inside = $(evt.target.childNodes)
   //console.log(inside)
   openCards.push(inside);
+  
   //evt.target.style.backgroundColor = "red";
   openCardList(evt);
 }
@@ -66,6 +68,7 @@ function closeAllCards(){
   let cards = document.querySelectorAll(".card");
   //Remove the open show classes after a 1.1 second delay.
   setTimeout(function(){ $(cards).removeClass("open show"); }, 1100);
+  movesCount();
   //reset the openCards array to empty.
   openCards = [];
 }
@@ -82,12 +85,21 @@ function matchingCards(){
   cardsfoundScore();
   //clear the open cards array
   openCards = [];
+  movesCount();
 }
 
 function cardsfoundScore(){
 
   let cardsMatched = winningPairs.length;
   console.log("You have matched " + cardsMatched + " pairs of cards");
+}
+
+function movesCount(){
+  //simple function to just incrament by 1 each time two cards are turned over or matched. Total moves. 
+  moves++
+  //scoreHTML.text(moves);
+  $( scoreHTML ).text(moves);
+  console.log("Total moves: " + moves)
 }
 
 
