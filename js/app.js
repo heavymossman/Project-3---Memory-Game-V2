@@ -48,6 +48,17 @@ function shuffle(array) {
 
 
 
+
+  var timer = new Timer();
+  timer.start();
+  timer.addEventListener('secondsUpdated', function (e) {
+      $('#basicUsage').html(timer.getTimeValues().toString());
+
+  });
+
+
+
+
 let gameArea = document.getElementById("gameArea");
 let ul = document.createElement("UL");
 ul.className = "deck";
@@ -67,7 +78,7 @@ function closeAllCards(){
   //store all the elements with the class card in the var cards
   let cards = document.querySelectorAll(".card");
   //Remove the open show classes after a 1.1 second delay.
-  setTimeout(function(){ $(cards).removeClass("open show"); }, 1100);
+  setTimeout(function(){ $(cards).removeClass("open show"); }, 1000);
   movesCount();
   //reset the openCards array to empty.
   openCards = [];
@@ -79,7 +90,6 @@ function matchingCards(){
   console.log(cards)
   //Add the match variable. 
   $(cards).addClass("match");
-  console.log("WIN");
   //send the winning cards to the winning pairs array to be stored (prob use this as the score)
   winningPairs.push(cards);
   cardsfoundScore();
@@ -100,14 +110,15 @@ function movesCount(){
   moves++
   //scoreHTML.text(moves);
   $( scoreHTML ).text(moves);
-  console.log("Total moves: " + moves)
+  //Display teh completed game time in modal popup upon victory
+  $('#gameTime').html(timer.getTimeValues().toString());
 }
 
 function winner(){
 
-  let winningScore = cards.length / 2;
-  console.log(winningScore) 
+  let winningScore = cards.length / 2; 
   if(winningPairs.length === winningScore){
+    timer.stop();
     //alert("CONGRATULATIONS" + "<br>" + "//console.log("YOU WIN THE GAME");
     launchModal();
   }
@@ -151,7 +162,17 @@ function openCardList(evt) {
 
 
 
+
+
 function buildGame() {
+
+  
+
+
+
+  
+        
+
 
   //shuffles the array of cards each time the function is run to build a new game
   let shuffledCards = shuffle(cards);
