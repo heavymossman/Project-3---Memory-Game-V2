@@ -16,7 +16,7 @@
                "fas fa-baseball-ball",
                "fas fa-bicycle",
                "fas fa-boxes",
-               "fas fa-camera-retro" */
+               "fas fa-camera-retro"*/
              ];
 
 /*
@@ -86,6 +86,7 @@ function matchingCards(){
   //clear the open cards array
   openCards = [];
   movesCount();
+  winner();
 }
 
 function cardsfoundScore(){
@@ -102,11 +103,20 @@ function movesCount(){
   console.log("Total moves: " + moves)
 }
 
+function winner(){
+
+  if(winningPairs.length === 2){
+    alert("CONGRATULATIONS" + "<br>" + "You are a winner!")
+    console.log("YOU WIN THE GAME")
+  }
+
+}
+
 
 function openCardList(evt) {
 
 
-  if (openCards.length >= 2){
+  if (openCards.length > 1){
 
     //for (let i = 0; i < openCards.length; i++){
       //console.log(openCards[i])
@@ -130,6 +140,9 @@ function openCardList(evt) {
   //  console.log(openCards.toString())
 
 
+  } if (openCards.length > 2) {
+    //if users tried to turn too many cards around
+      $(cards).removeClass("open show");
   }
 
 }
