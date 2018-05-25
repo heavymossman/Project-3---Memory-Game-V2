@@ -30,6 +30,7 @@ let openCards = [];
 let winningPairs = [];
 let moves = 0;
 let scoreHTML = $('.moves');
+let startingStars = 3
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -49,7 +50,7 @@ function shuffle(array) {
 
 
 
-  var timer = new Timer();
+  let timer = new Timer();
   timer.start();
   timer.addEventListener('secondsUpdated', function (e) {
       $('#basicUsage').html(timer.getTimeValues().toString());
@@ -107,7 +108,9 @@ function movesCount(){
   //simple function to just incrament by 1 each time two cards are turned over or matched. Total moves. 
   moves++
   //scoreHTML.text(moves);
+  console.log(moves)
   $( scoreHTML ).text(moves);
+  stars();
   //Display teh completed game time in modal popup upon victory
   $('#gameTime').html(timer.getTimeValues().toString());
 }
@@ -129,10 +132,6 @@ function openCardList(evt) {
 
   if (openCards.length > 1){
 
-    //for (let i = 0; i < openCards.length; i++){
-      //console.log(openCards[i])
-    //}
-
     let firstCard = $(openCards[0]).attr('class');
     let secondCard = $(openCards[1]).attr('class');
 
@@ -143,8 +142,6 @@ function openCardList(evt) {
       
     }
 
-  //  console.log(openCards.toString())
-
 
   } if (openCards.length > 2) {
     //if users tried to turn too many cards around
@@ -153,18 +150,41 @@ function openCardList(evt) {
 
 }
 
+let starUi = document.getElementById("starsList");
 
+for(let i = 0; i < 3; i++) {
+      let newli = document.createElement("LI");
 
+      let newIcon = document.createElement("I");
+
+      newIcon.className = "fas fa-star";
+
+      newli.appendChild(newIcon);
+      starUi.appendChild(newli);
+}
+
+function stars() {
+
+  //removes the stars once a certain score is achieved
+
+  if (moves === 6 || timer == ){
+    starUi.removeChild(starUi.childNodes[0]);
+  }
+  if (moves === 10){
+    starUi.removeChild(starUi.childNodes[0]);
+  }
+  if (moves === 14){
+    starUi.removeChild(starUi.childNodes[0]);
+  }
+
+  if (moves === 18){
+    starUi.removeChild(starUi.childNodes[0]);
+  }
+
+}
 
 
 function buildGame() {
-
-  
-
-
-
-  
-        
 
 
   //shuffles the array of cards each time the function is run to build a new game
