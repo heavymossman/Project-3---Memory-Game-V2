@@ -27,6 +27,7 @@
  */
 
 let openCards = [];
+let winningPairs = [];
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -70,9 +71,23 @@ function closeAllCards(){
 }
 
 function matchingCards(){
+  //store the matching cards as they are the only ones open in a variable. 
   let cards = document.querySelectorAll(".open")
+  console.log(cards)
+  //Add the match variable. 
   $(cards).addClass("match");
   console.log("WIN");
+  //send the winning cards to the winning pairs array to be stored (prob use this as the score)
+  winningPairs.push(cards);
+  cardsfoundScore();
+  //clear the open cards array
+  openCards = [];
+}
+
+function cardsfoundScore(){
+
+  let cardsMatched = winningPairs.length;
+  console.log("You have matched " + cardsMatched + " pairs of cards");
 }
 
 
