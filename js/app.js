@@ -69,11 +69,14 @@ function openCardList() {
       //console.log(openCards[i])
     //}
 
+    let firstCard = $(openCards[0]).attr('class');
+    let secondCard = $(openCards[1]).attr('class');
 
-    console.log(openCards[0]);
-    console.log(openCards[1]);
 
-    if (openCards[0] == openCards[1]) {
+    console.log(firstCard);
+    console.log(secondCard);
+
+    if (firstCard === secondCard) {
       console.log("WIN");
     } else {
       console.log("NO MATCH")
