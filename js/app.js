@@ -63,22 +63,24 @@ function respondToClick(evt){
 function openCardList() {
 
 
-
   if (openCards.length >= 2){
 
-    for (let i = 0; i < openCards.length; i++){
-      console.log(openCards[i])
+    //for (let i = 0; i < openCards.length; i++){
+      //console.log(openCards[i])
+    //}
+
+
+    console.log(openCards[0]);
+    console.log(openCards[1]);
+
+    if (openCards[0] == openCards[1]) {
+      console.log("WIN");
+    } else {
+      console.log("NO MATCH")
     }
 
+  //  console.log(openCards.toString())
 
-    //console.log(openCards[1]);
-    //console.log(cardOne);
-
-    /*if (openCards[0] == openCards[1]) {
-      console.log("WIN");
-    } else if (openCards[0] !== openCards[1]) {
-      console.log("NO MATCH")
-    } */
 
   }
 
