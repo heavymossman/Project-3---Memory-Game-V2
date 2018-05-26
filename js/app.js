@@ -167,7 +167,7 @@ function stars() {
 
   //removes the stars once a certain score is achieved
 
-  if (moves === 6 || timer == ){
+  if (moves === 6 ){
     starUi.removeChild(starUi.childNodes[0]);
   }
   if (moves === 10){
