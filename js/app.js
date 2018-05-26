@@ -163,26 +163,40 @@ for(let i = 0; i < 3; i++) {
 
       newli.appendChild(newIcon);
       starUi.appendChild(newli);
-      modalStars.appendChild(newli);
+      //modalStars.appendChild(newli);
 }
+
+for(let i = 0; i < 3; i++) {
+      let newli = document.createElement("LI");
+
+      let newIcon = document.createElement("I");
+
+      newIcon.className = "fas fa-star";
+
+      newli.appendChild(newIcon);
+      modalStars.appendChild(newli);
+      //modalStars.appendChild(newli);
+}
+
+
 
 function stars() {
 
   //removes the stars once a certain score is achieved
 
-  if (moves === 6 ){
+  if (moves === 14 ){
     starUi.removeChild(starUi.childNodes[0]);
+    modalStars.removeChild(modalStars.childNodes[0]);
   }
-  if (moves === 10){
-    starUi.removeChild(starUi.childNodes[0]);
-  }
-  if (moves === 14){
-    starUi.removeChild(starUi.childNodes[0]);
-  }
-
   if (moves === 18){
     starUi.removeChild(starUi.childNodes[0]);
+    modalStars.removeChild(modalStars.childNodes[0]);
   }
+  if (moves === 22){
+    starUi.removeChild(starUi.childNodes[0]);
+    modalStars.removeChild(modalStars.childNodes[0]);
+  }
+
 
 }
 
