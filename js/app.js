@@ -4,7 +4,7 @@
  const cards = ["fab fa-pied-piper-hat",
                "fab fa-adversal",
                "fab fa-pied-piper-hat",
-               "fab fa-adversal"/*,
+               "fab fa-adversal",
               "fas fa-allergies",
                "fas fa-balance-scale",
                "fas fa-baseball-ball",
@@ -16,7 +16,7 @@
                "fas fa-baseball-ball",
                "fas fa-bicycle",
                "fas fa-boxes",
-               "fas fa-camera-retro"*/
+               "fas fa-camera-retro"
              ];
 
 /*
@@ -152,6 +152,8 @@ function openCardList(evt) {
 
 let starUi = document.getElementById("starsList");
 
+let modalStars = document.getElementById("modalStars")
+
 for(let i = 0; i < 3; i++) {
       let newli = document.createElement("LI");
 
@@ -161,6 +163,7 @@ for(let i = 0; i < 3; i++) {
 
       newli.appendChild(newIcon);
       starUi.appendChild(newli);
+      modalStars.appendChild(newli);
 }
 
 function stars() {
