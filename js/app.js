@@ -151,10 +151,6 @@ function openCardList(evt) {
 
 
   }
-  if (openCards.length > 2) {
-    //if users tried to turn too many cards around
-    $(cards).removeClass("open show");
-  }
 
 }
 
