@@ -1,23 +1,23 @@
 /*
  * Create a list that holds all of your cards
  */
- const cards = ["fab fa-pied-piper-hat",
-               "fab fa-adversal",
-               "fab fa-pied-piper-hat",
-               "fab fa-adversal",
-              "fas fa-allergies",
-               "fas fa-balance-scale",
-               "fas fa-baseball-ball",
-               "fas fa-bicycle",
-               "fas fa-boxes",
-               "fas fa-camera-retro",
-               "fas fa-allergies",
-               "fas fa-balance-scale",
-               "fas fa-baseball-ball",
-               "fas fa-bicycle",
-               "fas fa-boxes",
-               "fas fa-camera-retro"
-             ];
+const cards = ["fab fa-pied-piper-hat",
+  "fab fa-adversal",
+  "fab fa-pied-piper-hat",
+  "fab fa-adversal",
+  "fas fa-allergies",
+  "fas fa-balance-scale",
+  "fas fa-baseball-ball",
+  "fas fa-bicycle",
+  "fas fa-boxes",
+  "fas fa-camera-retro",
+  "fas fa-allergies",
+  "fas fa-balance-scale",
+  "fas fa-baseball-ball",
+  "fas fa-bicycle",
+  "fas fa-boxes",
+  "fas fa-camera-retro"
+];
 
 /*
  * Display the cards on the page
@@ -26,6 +26,7 @@
  *   - add each card's HTML to the page
  */
 
+//Opening empty variables and arrays
 let openCards = [];
 let winningPairs = [];
 let moves = 0;
@@ -34,30 +35,26 @@ let startingStars = 3
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
+let timer = new Timer();
+//timer.start();
+timer.addEventListener('secondsUpdated', function(e) {
+  $('#basicUsage').html(timer.getTimeValues().toString());
 
-
-
-  let timer = new Timer();
-  timer.start();
-  timer.addEventListener('secondsUpdated', function (e) {
-      $('#basicUsage').html(timer.getTimeValues().toString());
-
-  });
-
-
+});
 
 
 let gameArea = document.getElementById("gameArea");
@@ -65,27 +62,29 @@ let ul = document.createElement("UL");
 ul.className = "deck";
 gameArea.appendChild(ul);
 
-function respondToClick(evt){
+function respondToClick(evt) {
   $(evt.target).toggleClass("open show");
   let inside = $(evt.target.childNodes)
   //console.log(inside)
   openCards.push(inside);
-  
+
   //evt.target.style.backgroundColor = "red";
   openCardList(evt);
 }
 
-function closeAllCards(){
+function closeAllCards() {
   //store all the elements with the class card in the var cards
   let cards = document.querySelectorAll(".card");
   //Remove the open show classes after a 1.1 second delay.
-  setTimeout(function(){ $(cards).removeClass("open show"); }, 1000);
+  setTimeout(function() {
+    $(cards).removeClass("open show");
+  }, 1000);
   movesCount();
   //reset the openCards array to empty.
   openCards = [];
 }
 
-function matchingCards(){
+function matchingCards() {
   //store the matching cards as they are the only ones open in a variable. 
   let cards = document.querySelectorAll(".open")
   //Add the match variable. 
@@ -99,26 +98,26 @@ function matchingCards(){
   winner();
 }
 
-function cardsfoundScore(){
+function cardsfoundScore() {
 
   let cardsMatched = winningPairs.length;
 }
 
-function movesCount(){
+function movesCount() {
   //simple function to just incrament by 1 each time two cards are turned over or matched. Total moves. 
   moves++
   //scoreHTML.text(moves);
   console.log(moves)
-  $( scoreHTML ).text(moves);
+  $(scoreHTML).text(moves);
   stars();
   //Display teh completed game time in modal popup upon victory
   $('#gameTime').html(timer.getTimeValues().toString());
 }
 
-function winner(){
+function winner() {
 
-  let winningScore = cards.length / 2; 
-  if(winningPairs.length === winningScore){
+  let winningScore = cards.length / 2;
+  if (winningPairs.length === winningScore) {
     timer.stop();
     //alert("CONGRATULATIONS" + "<br>" + "//console.log("YOU WIN THE GAME");
     launchModal();
@@ -129,23 +128,32 @@ function winner(){
 
 function openCardList(evt) {
 
+  if (moves >= 0) {
+    timer.start();
+  }
 
-  if (openCards.length > 1){
+  //make sure the open cards array has moret than one card open
+  if (openCards.length > 1) {
 
+    //store the open cards class in variables
     let firstCard = $(openCards[0]).attr('class');
     let secondCard = $(openCards[1]).attr('class');
 
+    //check if those variable class strings match
     if (firstCard === secondCard) {
+      //if they match, run the winning function
       matchingCards();
     } else {
+      //if they do not match, then close all cards.
       closeAllCards();
-      
+
     }
 
 
-  } if (openCards.length > 2) {
+  }
+  if (openCards.length > 2) {
     //if users tried to turn too many cards around
-      $(cards).removeClass("open show");
+    $(cards).removeClass("open show");
   }
 
 }
@@ -154,49 +162,46 @@ let starUi = document.getElementById("starsList");
 
 let modalStars = document.getElementById("modalStars")
 
-for(let i = 0; i < 3; i++) {
-      let newli = document.createElement("LI");
+for (let i = 0; i < 3; i++) {
+  let newli = document.createElement("LI");
 
-      let newIcon = document.createElement("I");
+  let newIcon = document.createElement("I");
 
-      newIcon.className = "fas fa-star";
+  newIcon.className = "fas fa-star";
 
-      newli.appendChild(newIcon);
-      starUi.appendChild(newli);
-      //modalStars.appendChild(newli);
+  newli.appendChild(newIcon);
+  starUi.appendChild(newli);
+  //modalStars.appendChild(newli);
 }
 
-for(let i = 0; i < 3; i++) {
-      let newli = document.createElement("LI");
+for (let i = 0; i < 3; i++) {
+  let newli = document.createElement("LI");
 
-      let newIcon = document.createElement("I");
+  let newIcon = document.createElement("I");
 
-      newIcon.className = "fas fa-star";
+  newIcon.className = "fas fa-star";
 
-      newli.appendChild(newIcon);
-      modalStars.appendChild(newli);
-      //modalStars.appendChild(newli);
+  newli.appendChild(newIcon);
+  modalStars.appendChild(newli);
+  //modalStars.appendChild(newli);
 }
-
-
 
 function stars() {
 
   //removes the stars once a certain score is achieved
 
-  if (moves === 14 ){
+  if (moves === 14) {
     starUi.removeChild(starUi.childNodes[0]);
     modalStars.removeChild(modalStars.childNodes[0]);
   }
-  if (moves === 18){
+  if (moves === 18) {
     starUi.removeChild(starUi.childNodes[0]);
     modalStars.removeChild(modalStars.childNodes[0]);
   }
-  if (moves === 22){
+  if (moves === 22) {
     starUi.removeChild(starUi.childNodes[0]);
     modalStars.removeChild(modalStars.childNodes[0]);
   }
-
 
 }
 
@@ -209,7 +214,7 @@ function buildGame() {
   //This is where we sill store our open cards
 
   //Loop creates the li for each element in the array of cards
-  for(let i = 0; i < cards.length; i++) {
+  for (let i = 0; i < cards.length; i++) {
 
     //create new li node
     let newli = document.createElement("LI");
@@ -225,13 +230,6 @@ function buildGame() {
 
     //append the new icon node to the li node
     newli.appendChild(newIcon);
-    /*$(newli).click(function(evt){
-          let checkMe = newli.childNodes;
-          //console.log(checkMe)
-          openCards.push(checkMe);
-          cardChecker();
-          $(newli).toggleClass("open show");
-    }); */
 
     newli.addEventListener('click', respondToClick);
 
@@ -239,11 +237,6 @@ function buildGame() {
     ul.appendChild(newli);
 
   };
-
-  //gameArea.addEventListener('click', respondToClick);
-
-
-
 }
 
 
@@ -263,19 +256,19 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
 function launchModal() {
-    modal.style.display = "block";
+  modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+  modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 
