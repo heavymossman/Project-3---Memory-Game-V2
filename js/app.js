@@ -33,7 +33,6 @@ let moves = 0;
 let scoreHTML = $('.moves');
 let startingStars = 3
 let tempEvent = "";
-let cardIndex = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -72,10 +71,8 @@ function respondToClick(evt) {
 
     //$(e).toggleClass("open show");
     let inside = $(tempEvent.childNodes);
-    let card = $(tempEvent);
 
     openCards.push(inside);
-    cardIndex.push(card);
     //console.log(openCards)
     //evt.target.style.backgroundColor = "red";
     openCardList(evt);
