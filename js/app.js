@@ -63,11 +63,14 @@ ul.className = "deck";
 gameArea.appendChild(ul);
 
 function respondToClick(evt) {
-  $(evt.target).toggleClass("open show");
-  let inside = $(evt.target.childNodes)
-  //console.log(inside)
+  let e = evt.target;
+  let id = evt.target.id;
+  console.log(id)
+  $(e).toggleClass("open show");
+  let inside = $(e.childNodes)
+  $(e).off();// remves evevnt listener but isn't working
   openCards.push(inside);
-
+  //console.log(openCards)
   //evt.target.style.backgroundColor = "red";
   openCardList(evt);
 }
@@ -85,9 +88,9 @@ function closeAllCards() {
 }
 
 function matchingCards() {
-  //store the matching cards as they are the only ones open in a variable. 
+  //store the matching cards as they are the only ones open in a variable.
   let cards = document.querySelectorAll(".open")
-  //Add the match variable. 
+  //Add the match variable.
   $(cards).addClass("match");
   //send the winning cards to the winning pairs array to be stored (prob use this as the score)
   winningPairs.push(cards);
@@ -104,10 +107,10 @@ function cardsfoundScore() {
 }
 
 function movesCount() {
-  //simple function to just incrament by 1 each time two cards are turned over or matched. Total moves. 
+  //simple function to just incrament by 1 each time two cards are turned over or matched. Total moves.
   moves++
   //scoreHTML.text(moves);
-  console.log(moves)
+  //console.log(moves)
   $(scoreHTML).text(moves);
   stars();
   //Display teh completed game time in modal popup upon victory
@@ -128,9 +131,12 @@ function winner() {
 
 function openCardList(evt) {
 
+
   if (moves >= 0) {
     timer.start();
   }
+
+
 
   //make sure the open cards array has moret than one card open
   if (openCards.length > 1) {
@@ -156,7 +162,7 @@ function openCardList(evt) {
 
 let starUi = document.getElementById("starsList");
 
-let modalStars = document.getElementById("modalStars")
+let modalStars = document.getElementById("modalStars");
 
 for (let i = 0; i < 3; i++) {
   let newli = document.createElement("LI");
@@ -216,6 +222,8 @@ function buildGame() {
     let newli = document.createElement("LI");
     //apply the card class
     newli.className = "card";
+    //create unique id for each li to stop cheaters!!
+    newli.id = i;
 
     // store the indexed value in the already shuffled array cards
     let card = shuffledCards[i];
@@ -250,7 +258,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 function launchModal() {
   modal.style.display = "block";
 }
