@@ -33,6 +33,7 @@ let moves = 0;
 let scoreHTML = $('.moves');
 let startingStars = 3
 let tempEvent = "";
+let cardIndex = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -70,27 +71,50 @@ function respondToClick(evt) {
   $(tempEvent).toggleClass("open show");
 
   //$(e).toggleClass("open show");
-  let inside = $(tempEvent.childNodes)
+  let inside = $(tempEvent.childNodes);
+  let card = $(tempEvent);
 
   openCards.push(inside);
+  cardIndex.push(card);
   //console.log(openCards)
   //evt.target.style.backgroundColor = "red";
+  cardIndexTest();
   openCardList(evt);
 
+}
+
+//DELETE THIS PROBABLY - IT IS TO TEST IF THE CARD INDEX IS THE SAME- THIS DOES WORK
+function cardIndexTest(){
+  if (cardIndex.length > 0) {
+    let cardOne = $(cardIndex[0]).attr('id');
+    let cardTwo = $(cardIndex[1]).attr('id');
+
+    if (cardOne === cardTwo) {
+      alert("DO NOT TRY AND CHEAT!")
+      location.reload();
+
+    } else {
+      console.log("DIFFERENT");
+
+    }
+  }
 }
 
 function closeAllCards() {
   //store all the elements with the class card in the var cards
   let cards = document.querySelectorAll(".card");
-  console.log(cards)
+  gameArea.removeEventListener('click', respondToClick);
+
   //Remove the open show classes after a 1.1 second delay.
   setTimeout(function() {
     $(cards).removeClass("open show");
+      //After the cards turn back around, we readd in the event listners
+      addBackEvents();
   }, 1000);
   movesCount();
   //reset the openCards array to empty.
   openCards = [];
-  addBackEvents();
+
 
 }
 
@@ -111,7 +135,6 @@ function matchingCards() {
 }
 
 function cardsfoundScore() {
-
   let cardsMatched = winningPairs.length;
 }
 
@@ -141,14 +164,16 @@ function winner() {
 function openCardList(evt) {
 
 
+
+
   if (moves >= 0) {
     timer.start();
   }
 
 
-
-  //make sure the open cards array has moret than one card open
+  //make sure the open cards array has more than one card open
   if (openCards.length > 1) {
+
 
 
     //store the open cards class in variables
