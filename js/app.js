@@ -65,7 +65,6 @@ gameArea.appendChild(ul);
 
 function respondToClick(evt) {
     tempEvent = evt.target;
-    let id = evt.target.id;
     tempEvent.removeEventListener("click", respondToClick);
     $(tempEvent).toggleClass("open show");
 
