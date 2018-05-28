@@ -90,6 +90,7 @@ function closeAllCards() {
   movesCount();
   //reset the openCards array to empty.
   openCards = [];
+  addBackEvents();
 
 }
 
@@ -290,9 +291,17 @@ window.onclick = function(event) {
 
 
 function addBackEvents(){
-  allLi = gameArea.querySelectorAll("LI");
-  console.log(allLi)
-  allLi.addEventListener('click', respondToClick)
+  let allLi = gameArea.querySelectorAll("LI");
+  //console.log(allLi.length)
+
+  for(let i = 0; i < allLi.length; i++){
+    allLi[i].addEventListener('click', respondToClick);
+  }
+
+
+  //Array.from(allLi).forEach()
+
+
 }
 
 
