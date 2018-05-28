@@ -32,6 +32,7 @@ let winningPairs = [];
 let moves = 0;
 let scoreHTML = $('.moves');
 let startingStars = 3
+let tempEvent = "";
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -63,12 +64,12 @@ ul.className = "deck";
 gameArea.appendChild(ul);
 
 function respondToClick(evt) {
-  let e = evt.target;
+  tempEvent = evt.target;
   let id = evt.target.id;
-  console.log(id)
-  $(e).toggleClass("open show");
-  let inside = $(e.childNodes)
-  $(e).off();// remves evevnt listener but isn't working
+  $(tempEvent).toggleClass("open show");
+  //$(e).toggleClass("open show");
+  let inside = $(tempEvent.childNodes)
+
   openCards.push(inside);
   //console.log(openCards)
   //evt.target.style.backgroundColor = "red";
@@ -141,6 +142,7 @@ function openCardList(evt) {
   //make sure the open cards array has moret than one card open
   if (openCards.length > 1) {
 
+
     //store the open cards class in variables
     let firstCard = $(openCards[0]).attr('class');
     let secondCard = $(openCards[1]).attr('class');
@@ -149,10 +151,14 @@ function openCardList(evt) {
     if (firstCard === secondCard) {
       //if they match, run the winning function
       matchingCards();
+      //x.addEventListener('click',respondToClick);
     } else {
       //if they do not match, then close all cards.
-      closeAllCards();
 
+
+      //let x = document.querySelectorAll('.cards');
+      //tempEvent.addEventListener('click', respondToClick);
+      closeAllCards();
     }
 
 
