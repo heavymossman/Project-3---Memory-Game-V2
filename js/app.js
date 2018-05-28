@@ -66,7 +66,9 @@ gameArea.appendChild(ul);
 function respondToClick(evt) {
   tempEvent = evt.target;
   let id = evt.target.id;
+  tempEvent.removeEventListener("click", respondToClick);
   $(tempEvent).toggleClass("open show");
+
   //$(e).toggleClass("open show");
   let inside = $(tempEvent.childNodes)
 
@@ -74,11 +76,13 @@ function respondToClick(evt) {
   //console.log(openCards)
   //evt.target.style.backgroundColor = "red";
   openCardList(evt);
+
 }
 
 function closeAllCards() {
   //store all the elements with the class card in the var cards
   let cards = document.querySelectorAll(".card");
+  console.log(cards)
   //Remove the open show classes after a 1.1 second delay.
   setTimeout(function() {
     $(cards).removeClass("open show");
@@ -86,7 +90,10 @@ function closeAllCards() {
   movesCount();
   //reset the openCards array to empty.
   openCards = [];
+
 }
+
+
 
 function matchingCards() {
   //store the matching cards as they are the only ones open in a variable.
@@ -279,6 +286,13 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+
+function addBackEvents(){
+  allLi = gameArea.querySelectorAll("LI");
+  console.log(allLi)
+  allLi.addEventListener('click', respondToClick)
 }
 
 
